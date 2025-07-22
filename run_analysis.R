@@ -1,0 +1,13 @@
+subject_train <- read.table("UCI HAR Dataset/train/subject_train.txt")
+x_train <- read.table("UCI HAR Dataset/train/X_train.txt")
+y_train <- read.table("UCI HAR Dataset/train/y_train.txt")
+
+subject_test <- read.table("UCI HAR Dataset/test/subject_test.txt")
+x_test <- read.table("UCI HAR Dataset/test/X_test.txt")
+y_test <- read.table("UCI HAR Dataset/test/y_test.txt")
+subjects <- rbind(subject_test,subject_train)
+set <- rbind(x_test, x_train)
+labels <- rbind(y_test, y_train)
+mdata <- cbind(subjects,set,labels)
+features_names <- read.table("UCI HAR Dataset/features.txt")
+colnames(mdata) <- c("subject", "activity", as.character(features_names$V2))
